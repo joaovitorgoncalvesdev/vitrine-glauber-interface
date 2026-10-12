@@ -1,0 +1,522 @@
+/*
+ * Gestão Vitrine Glauber
+ * Camada isolada do site público. Mantém hierarquia previsível, temas e motion discreto.
+ */
+.management-shell {
+  --mg-bg: #f4f6fa;
+  --mg-surface: #ffffff;
+  --mg-raised: #f8f9fc;
+  --mg-text: #182643;
+  --mg-muted: #667087;
+  --mg-line: #d9deea;
+  --mg-hover: #eef3ff;
+  --mg-shadow: 0 10px 28px rgba(24, 38, 67, .07);
+  background: var(--mg-bg);
+  color: var(--mg-text);
+}
+
+body.body--dark .management-shell {
+  --mg-bg: #0f1729;
+  --mg-surface: #18223a;
+  --mg-raised: #202d49;
+  --mg-text: #f4f6fb;
+  --mg-muted: #b9c2d6;
+  --mg-line: #34425f;
+  --mg-hover: #223457;
+  --mg-shadow: 0 14px 34px rgba(0, 0, 0, .2);
+}
+
+.management-shell,
+.management-shell .q-page-container {
+  background: var(--mg-bg);
+  background-image: none;
+  color: var(--mg-text);
+}
+
+.management-header {
+  border-bottom: 1px solid var(--mg-line);
+  background: color-mix(in srgb, var(--mg-surface) 94%, transparent);
+  color: var(--mg-text);
+  box-shadow: none;
+  backdrop-filter: blur(16px);
+}
+
+.management-toolbar {
+  min-height: 60px;
+  padding: 0 18px;
+}
+
+.management-mobile-title {
+  display: grid;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.management-mobile-title span {
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.management-mobile-title strong {
+  font-size: .98rem;
+  letter-spacing: -.01em;
+}
+
+.management-profile {
+  min-height: 42px;
+  border-radius: 10px;
+  padding: 3px 7px;
+}
+
+.management-profile .q-btn__content {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.management-profile .q-btn__content > span:not(.q-avatar) {
+  display: grid;
+  text-align: left;
+  line-height: 1.08;
+}
+
+.management-profile small,
+.management-mobile-title span {
+  color: var(--mg-muted);
+}
+
+.management-drawer {
+  border-right: 1px solid var(--mg-line);
+  background: var(--mg-surface);
+  color: var(--mg-text);
+}
+
+.management-drawer .q-drawer__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.management-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 60px;
+  padding: 10px 13px;
+  border-bottom: 1px solid var(--mg-line);
+}
+
+.management-brand a {
+  display: inline-flex;
+  width: max-content;
+  padding: 5px 7px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.management-brand img { width: 126px; }
+
+.management-brand span {
+  flex: none;
+  background: var(--navy);
+  color: #fff;
+  padding: 4px 7px;
+  font-size: .58rem;
+}
+
+.management-drawer-signal,
+.management-dashboard-art,
+.management-workspace-signal { display: none !important; }
+
+.management-nav { padding: 10px 8px; }
+
+.management-nav .q-item {
+  min-height: 44px;
+  margin-bottom: 2px;
+  border-radius: 9px;
+  color: var(--mg-muted);
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.management-nav .q-item__section--avatar { min-width: 34px; }
+
+.management-nav .q-item:hover { background: var(--mg-hover); }
+
+.management-nav-active {
+  background: color-mix(in srgb, var(--blue) 13%, var(--mg-surface));
+  color: var(--blue) !important;
+}
+
+body.body--dark .management-nav-active { color: #94b3ff !important; }
+
+.management-drawer-foot {
+  gap: 0;
+  margin-top: auto;
+  padding: 9px 8px 13px;
+  border-top: 1px solid var(--mg-line);
+  background: var(--mg-surface);
+}
+
+.management-drawer-foot .q-btn {
+  min-height: 40px;
+  color: var(--mg-muted);
+}
+
+.management-drawer-foot small { color: var(--mg-muted); }
+
+.management-page {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+  padding: 34px 32px 64px;
+}
+
+.management-page-head,
+.management-dashboard-head,
+.management-workspace-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.management-page-head h1 {
+  margin: 6px 0 6px;
+  color: var(--mg-text);
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.management-page-head p,
+.management-task-copy p,
+.management-catalog-row p,
+.quality-item small { color: var(--mg-muted); }
+
+.management-head-aside,
+.management-workspace-actions { display: block; }
+
+.management-head-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.management-head-actions .q-btn,
+.management-workspace-actions .q-btn {
+  min-height: 44px;
+  border-radius: 11px;
+}
+
+.management-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--mg-line);
+  border-radius: 16px;
+  background: var(--mg-surface);
+  box-shadow: none;
+}
+
+.management-metrics article {
+  position: relative;
+  min-width: 0;
+  padding: 18px 20px 20px;
+  border-right: 1px solid var(--mg-line);
+  background: var(--mg-surface);
+  animation: mg-fade-in 240ms ease both;
+}
+
+.management-metrics article:last-child { border-right: 0; }
+.management-metrics article::after { height: 3px; animation: none; transform: scaleX(1); }
+.management-metrics span { color: var(--mg-muted); }
+.management-metrics strong { color: var(--mg-text); }
+.management-metrics small { color: var(--mg-muted); }
+
+.management-work-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, .7fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.management-panel {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--mg-line);
+  border-radius: 16px;
+  background: var(--mg-surface);
+  color: var(--mg-text);
+  box-shadow: var(--mg-shadow);
+}
+
+.management-work-grid > .management-panel,
+.management-side-column > .management-panel,
+.management-list-panel {
+  animation: mg-fade-in 260ms ease both;
+}
+
+/* Keep the workspace stable while routes and filters change. Older management
+   rules used staggered entrance animations with fill modes that could leave
+   cards translucent when navigation was interrupted. */
+.management-metrics article,
+.management-work-grid > .management-panel,
+.management-side-column > .management-panel,
+.management-list-panel {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.management-panel-head {
+  padding: 20px 20px 14px;
+}
+
+.management-panel-head h2 { color: var(--mg-text); }
+
+.management-workflow-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  overflow: visible;
+  padding: 0 20px 14px;
+}
+
+.management-workflow-filters button {
+  min-height: 36px;
+  border-color: var(--mg-line);
+  background: var(--mg-surface);
+  color: var(--mg-muted);
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.management-workflow-filters button.active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.management-task-list,
+.management-catalog-list { position: static; }
+
+.management-task {
+  grid-template-columns: 40px minmax(0, 1fr) max-content max-content;
+  gap: 12px;
+  padding: 15px 20px;
+  border-top-color: var(--mg-line);
+  background: var(--mg-surface);
+  transition: background-color 120ms ease;
+}
+
+.management-task:hover,
+.management-catalog-row:hover {
+  background: var(--mg-hover);
+  transform: none;
+}
+
+.management-task-copy { min-width: 0; }
+.management-task-copy h3 { color: var(--mg-text); }
+
+.management-status {
+  position: static;
+  flex: none;
+  white-space: nowrap;
+}
+
+.status-review i { animation: none; }
+
+body.body--dark .status-review { background: #4b3c13; color: #ffe28a; }
+body.body--dark .status-draft { background: #3b2d3a; color: #efb9d3; }
+body.body--dark .status-ready { background: #173d32; color: #8ee0bf; }
+
+.management-side-column {
+  display: grid;
+  gap: 20px;
+}
+
+.quality-item { padding: 12px 20px; }
+
+.management-quick > div:last-child {
+  gap: 10px;
+  padding: 0 18px 20px;
+}
+
+.management-quick button {
+  min-height: 108px;
+  border-color: var(--mg-line);
+  background: var(--mg-raised);
+  color: var(--mg-text);
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.management-quick button:hover {
+  border-color: var(--blue);
+  background: var(--mg-hover);
+  box-shadow: none;
+  transform: none;
+}
+
+.management-list-panel { overflow: hidden; }
+
+.management-list-toolbar {
+  padding: 18px;
+  border-bottom-color: var(--mg-line);
+  background: var(--mg-surface);
+}
+
+.management-catalog-row {
+  grid-template-columns: 56px minmax(0, 1fr) max-content max-content;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom-color: var(--mg-line);
+  background: var(--mg-surface);
+  transition: background-color 120ms ease;
+}
+
+.management-catalog-row h2 { color: var(--mg-text); }
+.management-row-icon { background: var(--mg-raised); }
+.management-empty { background: var(--mg-surface); }
+.management-empty h2 { color: var(--mg-text); }
+.management-empty p { color: var(--mg-muted); }
+
+.management-create-dialog {
+  background: var(--mg-surface);
+  color: var(--mg-text);
+}
+
+.management-demo-banner {
+  background: var(--mg-raised);
+  color: var(--mg-muted);
+}
+
+.management-route-enter-active,
+.management-route-leave-active {
+  transition: opacity 160ms ease;
+}
+
+.management-route-enter-from,
+.management-route-leave-to {
+  opacity: 0;
+  transform: none;
+}
+
+.management-list-enter-active,
+.management-list-leave-active {
+  position: static;
+  transition: opacity 140ms ease;
+}
+
+.management-list-enter-from,
+.management-list-leave-to {
+  opacity: 0;
+  transform: none;
+}
+
+.management-list-move { transition: none; }
+
+/* O login preserva a composição aprovada mesmo após sair do painel no tema escuro. */
+body.body--dark .management-login-page,
+body.body--dark .management-login-panel,
+body.body--dark .management-login-frame { color: #182643; }
+
+body.body--dark .management-login-panel .q-field__native,
+body.body--dark .management-login-panel .q-field__input,
+body.body--dark .management-login-panel .q-field__label,
+body.body--dark .management-login-panel .q-checkbox__label,
+body.body--dark .management-login-panel .q-icon { color: #182643; }
+
+body.body--dark .management-login-panel .q-field__control::before { border-color: #aeb8cb; }
+
+@keyframes mg-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1080px) {
+  .management-work-grid { grid-template-columns: 1fr; }
+  .management-side-column { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .management-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .management-metrics article:nth-child(2) { border-right: 0; }
+  .management-metrics article:nth-child(-n + 2) { border-bottom: 1px solid var(--mg-line); }
+}
+
+@media (max-width: 767px) {
+  .management-toolbar { min-height: 58px; padding: 0 8px; }
+  .management-mobile-title span { display: none; }
+  .management-mobile-title strong { font-size: .92rem; }
+  .management-profile { min-height: 40px; padding: 2px; }
+  .management-page { padding: 22px 15px 92px; }
+  .management-page-head,
+  .management-dashboard-head,
+  .management-workspace-head { display: block; margin-bottom: 20px; }
+  .management-page-head h1 { font-size: 2.1rem; }
+  .management-head-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 17px; }
+  .management-workspace-actions > .q-btn { width: 100%; margin-top: 17px; }
+  .management-metrics { gap: 9px; overflow: visible; border: 0; background: transparent; }
+  .management-metrics article {
+    min-height: 96px;
+    border: 1px solid var(--mg-line) !important;
+    border-radius: 14px;
+    padding: 14px;
+  }
+  .management-work-grid,
+  .management-side-column { gap: 14px; }
+  .management-side-column { grid-template-columns: 1fr; }
+  .management-panel { border-radius: 15px; }
+  .management-workflow-filters { flex-wrap: nowrap; overflow-x: auto; padding-inline: 15px; scrollbar-width: none; }
+  .management-workflow-filters::-webkit-scrollbar { display: none; }
+  .management-task {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px 15px;
+  }
+  .management-task .management-status,
+  .management-task > .q-btn { grid-column: 2; justify-self: start; }
+  .management-task > .q-btn { min-height: 38px; margin-left: -12px; }
+  .management-list-toolbar { align-items: stretch; flex-direction: column; }
+  .management-list-toolbar .q-field { width: 100%; }
+  .management-catalog-row {
+    grid-template-columns: 52px minmax(0, 1fr) max-content;
+    gap: 11px;
+    padding: 13px 14px;
+  }
+  .management-catalog-row .management-status { grid-column: 2; }
+  .management-catalog-row > .q-btn { grid-row: 1 / 3; grid-column: 3; align-self: center; }
+  .management-bottom-nav {
+    border-color: var(--mg-line);
+    background: color-mix(in srgb, var(--mg-surface) 94%, transparent);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .16);
+  }
+  .management-bottom-nav a { color: var(--mg-muted); }
+}
+
+@media (max-width: 390px) {
+  .management-head-actions { grid-template-columns: 1fr; }
+  .management-metrics { grid-template-columns: 1fr; }
+  .management-metrics article {
+    display: grid;
+    min-height: 82px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+  .management-metrics article > * { grid-column: 1; }
+  .management-metrics article strong { grid-row: 1 / 3; grid-column: 2; }
+  .management-quick > div:last-child { grid-template-columns: 1fr; }
+  .management-catalog-row { grid-template-columns: 46px minmax(0, 1fr); }
+  .management-catalog-row > .q-btn { grid-row: auto; grid-column: 2; justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .management-route-enter-active,
+  .management-route-leave-active,
+  .management-list-enter-active,
+  .management-list-leave-active,
+  .management-metrics article,
+  .management-work-grid > .management-panel,
+  .management-side-column > .management-panel,
+  .management-list-panel { animation: none !important; transition: none !important; }
+}

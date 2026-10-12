@@ -1,4 +1,4 @@
-# Vitrine Glauber - Interface
+# Vitrine Glauber — Vitrine pública
 
 Interface demonstrativa da Vitrine Glauber, plataforma pública digital dos boxes e expositores do Centro Cultural Glauber Rocha, em Vitória da Conquista - BA.
 
@@ -28,10 +28,20 @@ Os dados e contatos presentes na demonstração são fictícios e devem ser subs
 
 ```bash
 npm install
-npm run dev
+npm run dev:public
 ```
 
-Acesse `http://127.0.0.1:4173`.
+Acesse `http://127.0.0.1:4174`.
+
+## Projeto de gestão
+
+A área administrativa é uma aplicação independente localizada em `gestao/`.
+
+```bash
+npm run dev:gestao
+```
+
+Acesse `http://127.0.0.1:4175/gestao/login`.
 
 ## Compilar para produção
 
@@ -39,7 +49,7 @@ Acesse `http://127.0.0.1:4173`.
 npm run build
 ```
 
-Os arquivos prontos para hospedagem serão gerados em `dist/`.
+Esse comando compila as duas aplicações. A vitrine é gerada em `dist/` e a gestão em `gestao/dist/`.
 
 ## Configuração de hospedagem
 

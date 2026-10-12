@@ -5,8 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev:public": "vite",
+    "dev:gestao": "vite gestao --config gestao/vite.config.js",
+    "build": "npm run build:public && npm run build:gestao",
+    "build:public": "vite build",
+    "build:gestao": "vite build gestao --config gestao/vite.config.js",
+    "preview": "vite preview",
+    "preview:gestao": "vite preview gestao --config gestao/vite.config.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.17.0",
